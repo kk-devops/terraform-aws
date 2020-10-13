@@ -1,7 +1,12 @@
 #!/bin/bash
 function prepare_data {
     instances=$(aws ec2 describe-instances \
-        | jq '[.Reservations[].Instances[]] | map({InstanceId: .InstanceId, SubnetId: .SubnetId, HasAnotherEni: (.Tags[]|select(.Key=="HasAnotherEni")|.Value), AssignEip: (.Tags[]|select(.Key=="AssignEip")|.Value), NetworkInterfaceId: .NetworkInterfaces[]|select(.Attachment.DeviceIndex==0)|.NetworkInterfaceId})')
+        | jq '[.Reservations[].Instances[]] | map({
+            InstanceId: .InstanceId, 
+            SubnetId: .SubnetId, 
+            HasAnotherEni: (.Tags[]|select(.Key=="HasAnotherEni")|.Value), 
+            AssignEip: (.Tags[]|select(.Key=="AssignEip")|.Value), 
+            NetworkInterfaceId: .NetworkInterfaces[]|select(.Attachment.DeviceIndex==0)|.NetworkInterfaceId})')
     count=$(jq length <<< $instances)
     if [ $count -gt 0 ] 
     then
