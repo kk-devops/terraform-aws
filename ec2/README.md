@@ -1,6 +1,8 @@
 # EC2 classic
 
-Use infrastructure.sh to create or destroy infrastructure
+Use infrastructure.sh with *.tfvars file to create or destroy infrastructure
+
+```./infrastructure.sh apply|destroy env.tfvars```
 
 Instances defined in ```dev.tfvars```
 
