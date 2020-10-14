@@ -39,20 +39,28 @@ then
     if [ $? -eq 0 ]
     then
         prepare_data
-        cd ../manage-network
-        instance_subnets=$(echo $is)
-        network_interfaces_eip=$(echo $eip_ni)
-        terraform apply -auto-approve -var='eni_instances={'"$instance_subnets"'}' -var="eip_network_interfaces=[$network_interfaces_eip]"
+        if [ -n "$is" ] || [ -n "$eip_ni" ]
+        then
+            cd ../manage-network
+            instance_subnets=$(echo $is)
+            network_interfaces_eip=$(echo $eip_ni)
+            terraform apply -auto-approve -var='eni_instances={'"$instance_subnets"'}' -var="eip_network_interfaces=[$network_interfaces_eip]"
+        fi
     fi
 fi
 if [ "$1" == "destroy" ] 
 then
+    path="manage-instances"
     prepare_data
-    cd manage-network
-    terraform destroy -auto-approve -var='eni_instances={'"$instance_subnets"'}' -var="eip_network_interfaces=[$network_interfaces_eip]"
+    if [ -n "$is" ] || [ -n "$eip_ni" ]
+    then
+        cd manage-network
+        terraform destroy -auto-approve -var='eni_instances={'"$instance_subnets"'}' -var="eip_network_interfaces=[$network_interfaces_eip]"
+        path="../manage-instances"
+    fi
     if [ $? -eq 0 ]
     then
-        cd ../manage-instances
+        cd $path
         terraform destroy -auto-approve -var-file="../$2"
     fi
 fi

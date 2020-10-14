@@ -9,8 +9,8 @@ instances = {
     ]
     tags = {
       "Name"          = "web-1"
-      "AssignEip"     = "false"
-      "HasAnotherEni" = "true"
+      "AssignEip"     = "true"
+      "HasAnotherEni" = "false"
     }
   }
   "web-2" = {
@@ -23,8 +23,8 @@ instances = {
     ]
     tags = {
       "Name"          = "web-2"
-      "AssignEip"     = "true"
-      "HasAnotherEni" = "false"
+      "AssignEip"     = "false"
+      "HasAnotherEni" = "true"
     }
   }
 }
