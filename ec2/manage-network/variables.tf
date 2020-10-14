@@ -4,7 +4,7 @@ variable "region" {
 variable "eni_instances" {
   type = map(object({
     instance = string
-    subnet = string
+    subnet   = string
   }))
 }
 variable "eip_network_interfaces" {
