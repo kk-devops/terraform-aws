@@ -1,6 +1,3 @@
-data "aws_security_group" "clb" {
-  name = "allow_http_clb"
-}
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "Allow SSH inbound"
@@ -16,11 +13,11 @@ resource "aws_security_group" "allow_http" {
   name        = "allow_http"
   description = "Allow HTTP inbound"
   ingress {
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    security_groups = [data.aws_security_group.clb.id]
-    description     = "Allow inbound HTTP from load balancer"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow inbound HTTP from load balancer"
   }
 }
 resource "aws_security_group" "outbound" {

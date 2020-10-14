@@ -10,4 +10,4 @@ Instances defined in ```dev.tfvars```
 
 ```"HasAnotherEni" = "true``` will create additional network interface for instance
 
-```"Clb" = "true"``` will add instance to classic load balancer, which created in ```../elb/clb``` folder
+```"Clb" = "true"``` will add instance to classic load balancer, which configured in ```../elb/clb``` folder

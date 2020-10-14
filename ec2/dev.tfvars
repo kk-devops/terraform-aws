@@ -12,7 +12,7 @@ instances = {
       "Name"          = "web-1"
       "AssignEip"     = "false"
       "HasAnotherEni" = "false"
-      "Clb"           = "true"
+      "Clb"           = "false"
     }
   }
   "web-2" = {
@@ -28,7 +28,7 @@ instances = {
       "Name"          = "web-2"
       "AssignEip"     = "false"
       "HasAnotherEni" = "false"
-      "Clb"           = "true"
+      "Clb"           = "false"
     }
   }
   "web-3" = {
@@ -44,7 +44,7 @@ instances = {
       "Name"          = "web-3"
       "AssignEip"     = "false"
       "HasAnotherEni" = "false"
-      "Clb"           = "true"
+      "Clb"           = "false"
     }
   }
 }
