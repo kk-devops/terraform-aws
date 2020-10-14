@@ -17,13 +17,14 @@ data "template_file" "httpd" {
   template = file("external/install_apache.sh")
 }
 resource "aws_instance" "httpd" {
-  for_each        = var.instances
-  ami             = data.aws_ami.amazon_linux_2.id
-  instance_type   = each.value.instance_type
-  key_name        = each.value.key_name
-  security_groups = each.value.security_groups
-  tags            = each.value.tags
-  user_data       = data.template_file.httpd.rendered
+  for_each          = var.instances
+  ami               = data.aws_ami.amazon_linux_2.id
+  availability_zone = each.value.availability_zone
+  instance_type     = each.value.instance_type
+  key_name          = each.value.key_name
+  security_groups   = each.value.security_groups
+  tags              = each.value.tags
+  user_data         = data.template_file.httpd.rendered
 }
 output "public_dns" {
   value = {

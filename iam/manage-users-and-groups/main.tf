@@ -6,7 +6,7 @@ locals {
     for group, policies in var.policy_attachments : [
       for arn in policies : {
         group = group
-        arn = "arn:aws:iam::aws:policy/${arn}"
+        arn   = "arn:aws:iam::aws:policy/${arn}"
       }
     ]
   ])

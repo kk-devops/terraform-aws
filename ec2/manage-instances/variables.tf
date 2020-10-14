@@ -3,9 +3,10 @@ variable "region" {
 }
 variable "instances" {
   type = map(object({
-    instance_type   = string
-    key_name        = string
-    security_groups = list(string)
-    tags            = map(string)
+    availability_zone = string
+    instance_type     = string
+    key_name          = string
+    security_groups   = list(string)
+    tags              = map(string)
   }))
 }

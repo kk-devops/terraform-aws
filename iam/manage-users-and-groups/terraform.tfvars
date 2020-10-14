@@ -8,7 +8,7 @@ group_memberships = {
   "managers" = ["SomeGuy2", "SomeGuy3"]
 }
 policy_attachments = {
-  "admins"   = ["AdministratorAccess"]
+  "admins" = ["AdministratorAccess"]
   "managers" = [
     "AmazonEC2ReadOnlyAccess",
     "AmazonS3ReadOnlyAccess"
