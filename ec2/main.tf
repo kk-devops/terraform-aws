@@ -2,7 +2,7 @@ provider "aws" {
   region = var.region
 }
 module "ec2" {
-  source = "../../modules/ec2"
+  source = "../modules/ec2"
   instances = {
     "web-1" = {
       availability_zone = "us-east-2a"

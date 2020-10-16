@@ -2,9 +2,10 @@
 
 First run:
 
-```terraform apply -target=module.ec2
-
-terraform apply ```
+```
+terraform apply -target=module.ec2 
+terraform apply
+```
 
 ```"AssignEip" = "true"``` will create and assign Elastic IP to first network interface on instance
 
