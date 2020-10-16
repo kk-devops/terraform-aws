@@ -1,0 +1,4 @@
+resource "aws_key_pair" "kkdo" {
+  key_name   = "kkdo"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDIfNhFcj+wxzq+JNxqGEAL7wTYcBXCh+XpR+ZUiehKuTQadgQ5xgLKqrbOVe0r1GCvAC8b0A5zSIIKtTUz7sf+kxr9JQ8W46pFiktG3nJ/EHElItiI0wZN7JKgT/8hpISQxSGSvuPU/BxIX/HEL02NyEkrBXuNN0S/iA+7fUOgBU5wZ4iYqrQoab7wqJEdgQjnbsSAFIO3TWejKqHMNT5JnHsCb9QlYjfHHMgpsRrwkBDIDZ060oDgBxsOj/TS48RnMyZhxoGKsHRZ9v8T+rJmrTwc/yeKy3NBbaZh+pwsVSUFsfK8G2UJL2fhaS2LZk1T824sAY+6dBkbVv6YQ6S44dozBCfdmlLUMBohClfpO4KQA/bkxb2jSUI6r4sreYyUzDzUqa39q+geED2JAO7m2jT5UvT1Dl858gYd+vZccmJOtoaIx9SBM2SylNvyyexRGCc/TntNzJLLUGRcjob8AKa9eRPvlboy1Ifcq/Dquay8iS7PDyMAGN0NhEJ7z6U= kk-devops@outlook.com"
+}
