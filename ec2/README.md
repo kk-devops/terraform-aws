@@ -1,10 +1,10 @@
 # EC2 classic
 
-Use infrastructure.sh with *.tfvars file to create or destroy infrastructure
+First run:
 
-```./infrastructure.sh apply|destroy env.tfvars```
+```terraform apply -target=module.ec2
 
-Instances defined in ```dev.tfvars```
+terraform apply ```
 
 ```"AssignEip" = "true"``` will create and assign Elastic IP to first network interface on instance
 

@@ -1,6 +1,3 @@
-provider "aws" {
-  region = var.region
-}
 data "aws_ami" "amazon_linux_2" {
   most_recent = true
   owners      = ["amazon"]
@@ -26,10 +23,31 @@ resource "aws_instance" "httpd" {
   tags                   = each.value.tags
   user_data              = data.template_file.httpd.rendered
 }
+output "alb_ids" {
+  value = {
+    for instance in aws_instance.httpd :
+    instance.id => instance.tags.Alb
+    if lookup(instance.tags, "Alb", "false") == "true"
+  }
+}
 output "clb_ids" {
   value = {
     for instance in aws_instance.httpd :
     instance.id => instance.tags.Clb
-    if instance.tags["Clb"] == "true"
+    if lookup(instance.tags, "Clb", "false") == "true"
+  }
+}
+output "eip_ids" {
+  value = {
+    for instance in aws_instance.httpd :
+    instance.id => instance.primary_network_interface_id
+    if lookup(instance.tags, "AssignEip", "false") == "true"
+  }
+}
+output "eni_ids" {
+  value = {
+    for instance in aws_instance.httpd :
+    instance.id => instance.subnet_id
+    if lookup(instance.tags, "HasAnotherEni", "false") == "true"
   }
 }
