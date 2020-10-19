@@ -16,6 +16,7 @@ module "ec2" {
       tags = {
         "Name" = "web-1"
         "Alb"  = "true"
+        "TargetGroup" = "first"
       }
     }
     "web-2" = {
@@ -29,7 +30,8 @@ module "ec2" {
       ]
       tags = {
         "Name" = "web-2"
-        "Alb"  = "false"
+        "Alb"  = "true"
+        "TargetGroup" = "first"
       }
     }
     "web-3" = {
@@ -44,6 +46,7 @@ module "ec2" {
       tags = {
         "Name" = "web-3"
         "Alb"  = "true"
+        "TargetGroup" = "first"
       }
     }
   }
@@ -68,11 +71,11 @@ resource "aws_lb_listener" "frontend" {
   protocol          = "HTTP"
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.http.arn
+    target_group_arn = aws_lb_target_group.first.arn
   }
 }
-resource "aws_lb_target_group" "http" {
-  name     = "http"
+resource "aws_lb_target_group" "first" {
+  name     = "httpFirstTg"
   port     = "80"
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.default.id
@@ -86,9 +89,9 @@ resource "aws_lb_target_group" "http" {
     matcher             = "200"
   }
 }
-resource "aws_lb_target_group_attachment" "http" {
-  for_each         = module.ec2.alb_ids
-  target_group_arn = aws_lb_target_group.http.arn
+resource "aws_lb_target_group_attachment" "http_first_tg" {
+  for_each         = module.ec2.first_alb_ids
+  target_group_arn = aws_lb_target_group.first.arn
   target_id        = each.key
   port             = 80
 }

@@ -23,11 +23,18 @@ resource "aws_instance" "httpd" {
   tags                   = each.value.tags
   user_data              = data.template_file.httpd.rendered
 }
-output "alb_ids" {
+output "first_alb_ids" {
   value = {
     for instance in aws_instance.httpd :
     instance.id => instance.tags.Alb
-    if lookup(instance.tags, "Alb", "false") == "true"
+    if lookup(instance.tags, "Alb", "false") == "true" && lookup(instance.tags, "TargetGroup", "false") == "first"
+  }
+}
+output "second_alb_ids" {
+  value = {
+    for instance in aws_instance.httpd :
+    instance.id => instance.tags.Alb
+    if lookup(instance.tags, "Alb", "false") == "true" && lookup(instance.tags, "TargetGroup", "false") == "second"
   }
 }
 output "clb_ids" {
