@@ -1,3 +1,3 @@
 # CLB
 
-Configures simple application load balancer
+Configures simple classic load balancer
