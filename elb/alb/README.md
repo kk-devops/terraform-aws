@@ -1,4 +1,4 @@
-# CLB
+# ALB
 
 Configures simple application load balancer
 
