@@ -44,6 +44,13 @@ output "clb_ids" {
     if lookup(instance.tags, "Clb", "false") == "true"
   }
 }
+output "nlb_ids" {
+  value = {
+    for instance in aws_instance.httpd :
+    instance.id => instance.tags.Nlb
+    if lookup(instance.tags, "Nlb", "false") == "true"
+  }
+}
 output "eip_ids" {
   value = {
     for instance in aws_instance.httpd :
