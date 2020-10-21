@@ -55,9 +55,10 @@ data "aws_subnet_ids" "all" {
   vpc_id = data.aws_vpc.default.id
 }
 resource "aws_lb" "nlb" {
-  name               = "nlb"
-  load_balancer_type = "network"
-  subnets            = data.aws_subnet_ids.all.ids
+  name                             = "nlb"
+  load_balancer_type               = "network"
+  subnets                          = data.aws_subnet_ids.all.ids
+  enable_cross_zone_load_balancing = true
 }
 resource "aws_lb_listener" "frontend" {
   load_balancer_arn = aws_lb.nlb.arn
