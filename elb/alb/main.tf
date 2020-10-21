@@ -88,6 +88,10 @@ resource "aws_lb_target_group" "first" {
     interval            = 10
     matcher             = "200"
   }
+  stickiness {
+    type = "lb_cookie"
+    cookie_duration = 120
+  }
 }
 resource "aws_lb_target_group_attachment" "http_first_tg" {
   for_each         = module.ec2.first_alb_ids
